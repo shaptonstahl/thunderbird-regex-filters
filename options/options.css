@@ -1,0 +1,230 @@
+:root {
+  --fg: #1a1a1a;
+  --fg-muted: #555;
+  --bg: #fdfdfd;
+  --bg-alt: #f4f4f6;
+  --border: #d5d5d8;
+  --accent: #0a84ff;
+  --danger: #d70022;
+  --ok: #058b00;
+  --err: #d70022;
+  color-scheme: light dark;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --fg: #f5f5f5;
+    --fg-muted: #b5b5b5;
+    --bg: #1c1b22;
+    --bg-alt: #2b2a33;
+    --border: #4a4a55;
+    --accent: #4db8ff;
+  }
+}
+
+body {
+  font-family: system-ui, -apple-system, Segoe UI, sans-serif;
+  color: var(--fg);
+  background: var(--bg);
+  margin: 0;
+  padding: 1.5rem 2rem 4rem;
+  max-width: 1000px;
+  margin-inline: auto;
+  font-size: 14px;
+  line-height: 1.4;
+}
+
+.page-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-bottom: 0.5rem;
+}
+
+.page-header h1 {
+  margin: 0;
+  font-size: 1.5rem;
+}
+
+.toolbar {
+  display: flex;
+  gap: 0.5rem;
+}
+
+button {
+  font: inherit;
+  padding: 0.35rem 0.75rem;
+  border: 1px solid var(--border);
+  background: var(--bg-alt);
+  color: var(--fg);
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+button:hover {
+  border-color: var(--accent);
+}
+
+button.danger {
+  color: var(--danger);
+}
+
+.hint {
+  color: var(--fg-muted);
+  margin: 0 0 1.5rem;
+}
+
+.hint code {
+  background: var(--bg-alt);
+  padding: 1px 4px;
+  border-radius: 3px;
+}
+
+.rules-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.rule {
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  background: var(--bg-alt);
+}
+
+.rule-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.6rem 1rem;
+  border-bottom: 1px solid var(--border);
+}
+
+.toggle {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-weight: 600;
+}
+
+.rule-name {
+  cursor: default;
+}
+
+.rule-actions {
+  display: flex;
+  gap: 0.25rem;
+}
+
+.rule-body {
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.field.inline {
+  flex-direction: row;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.field > span,
+fieldset > legend {
+  font-weight: 600;
+  color: var(--fg-muted);
+  font-size: 0.85rem;
+}
+
+input[type="text"],
+select {
+  font: inherit;
+  padding: 0.35rem 0.5rem;
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  background: var(--bg);
+  color: var(--fg);
+}
+
+fieldset.accounts-field {
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: 0.5rem 0.75rem;
+}
+
+.account-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  margin-top: 0.25rem;
+  padding-left: 0.5rem;
+}
+
+.account-list label {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.conditions h3,
+.actions h3 {
+  margin: 0 0 0.5rem;
+  font-size: 0.95rem;
+}
+
+.conditions-list,
+.actions-list {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 0.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.condition,
+.action {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  flex-wrap: wrap;
+}
+
+.condition .cond-pattern {
+  flex: 1 1 16rem;
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+}
+
+.condition .cond-flags {
+  width: 4.5rem;
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+}
+
+.cond-status {
+  min-width: 1.2rem;
+  font-weight: 700;
+}
+
+.cond-status.ok {
+  color: var(--ok);
+}
+
+.cond-status.err {
+  color: var(--err);
+}
+
+.action .action-folder,
+.action .action-tag {
+  flex: 1 1 16rem;
+}
