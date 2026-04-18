@@ -1,0 +1,17 @@
+{
+  "name": "thunderbird-regex-filters",
+  "version": "0.1.0",
+  "description": "Thunderbird MailExtension for filtering messages with regular expressions.",
+  "private": true,
+  "license": "Apache-2.0",
+  "type": "module",
+  "scripts": {
+    "test": "node --test \"test/**/*.test.js\"",
+    "lint": "web-ext lint",
+    "run:tb": "web-ext run",
+    "build": "web-ext build --overwrite-dest"
+  },
+  "devDependencies": {
+    "web-ext": "^10.1.0"
+  }
+}

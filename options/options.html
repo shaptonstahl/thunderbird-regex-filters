@@ -1,0 +1,119 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Regex Filters — Rules</title>
+    <link rel="stylesheet" href="options.css" />
+  </head>
+  <body>
+    <header class="page-header">
+      <h1>Regex Filters</h1>
+      <div class="toolbar">
+        <button id="add-rule" type="button">Add rule</button>
+        <button id="import" type="button">Import JSON</button>
+        <button id="export" type="button">Export JSON</button>
+        <input id="import-file" type="file" accept="application/json" hidden />
+      </div>
+    </header>
+
+    <p class="hint">
+      Rules run on newly received messages, <em>after</em> Thunderbird's built-in filters.
+      Patterns use standard JavaScript regular expressions. Matching is case-sensitive by
+      default — add the <code>i</code> flag for case-insensitive matching.
+    </p>
+
+    <ul id="rules-list" class="rules-list" aria-live="polite"></ul>
+
+    <template id="rule-template">
+      <li class="rule" data-id="">
+        <div class="rule-head">
+          <label class="toggle">
+            <input type="checkbox" class="rule-enabled" />
+            <span class="rule-name"></span>
+          </label>
+          <div class="rule-actions">
+            <button type="button" data-op="up" title="Move up">↑</button>
+            <button type="button" data-op="down" title="Move down">↓</button>
+            <button type="button" data-op="duplicate">Duplicate</button>
+            <button type="button" data-op="delete" class="danger">Delete</button>
+          </div>
+        </div>
+
+        <div class="rule-body">
+          <label class="field">
+            <span>Name</span>
+            <input type="text" class="rule-name-input" />
+          </label>
+
+          <fieldset class="field accounts-field">
+            <legend>Applies to accounts</legend>
+            <label><input type="checkbox" class="account-all" checked /> All accounts</label>
+            <div class="account-list"></div>
+          </fieldset>
+
+          <label class="field">
+            <span>Match</span>
+            <select class="rule-join">
+              <option value="all">all conditions (AND)</option>
+              <option value="any">any condition (OR)</option>
+            </select>
+          </label>
+
+          <div class="conditions">
+            <h3>Conditions</h3>
+            <ul class="conditions-list"></ul>
+            <button type="button" class="add-condition">Add condition</button>
+          </div>
+
+          <div class="actions">
+            <h3>Actions</h3>
+            <ul class="actions-list"></ul>
+            <button type="button" class="add-action">Add action</button>
+          </div>
+
+          <label class="field inline">
+            <input type="checkbox" class="rule-stop" />
+            <span>Stop processing further rules if this one matches</span>
+          </label>
+        </div>
+      </li>
+    </template>
+
+    <template id="condition-template">
+      <li class="condition">
+        <select class="cond-field">
+          <option value="subject">Subject</option>
+          <option value="from">From</option>
+          <option value="recipients">To / Cc / Bcc</option>
+          <option value="body">Body</option>
+        </select>
+        <select class="cond-operator">
+          <option value="matches">regex matches</option>
+          <option value="not_matches">regex doesn't match</option>
+        </select>
+        <input type="text" class="cond-pattern" placeholder="pattern (e.g. ^\[URGENT\])" spellcheck="false" />
+        <input type="text" class="cond-flags" placeholder="flags" maxlength="8" spellcheck="false" />
+        <span class="cond-status" aria-live="polite"></span>
+        <button type="button" class="cond-remove" title="Remove condition">✕</button>
+      </li>
+    </template>
+
+    <template id="action-template">
+      <li class="action">
+        <select class="action-type">
+          <option value="move">Move to folder</option>
+          <option value="tag">Add tag</option>
+          <option value="markRead">Mark as read</option>
+          <option value="star">Star (flag)</option>
+          <option value="archive">Archive</option>
+          <option value="delete">Delete (to trash)</option>
+        </select>
+        <select class="action-folder" hidden></select>
+        <select class="action-tag" hidden></select>
+        <button type="button" class="action-remove" title="Remove action">✕</button>
+      </li>
+    </template>
+
+    <script type="module" src="options.js"></script>
+  </body>
+</html>

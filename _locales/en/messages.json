@@ -1,0 +1,10 @@
+{
+  "extensionName": {
+    "message": "Regex Filters",
+    "description": "Name of the extension, shown in the Add-ons Manager."
+  },
+  "extensionDescription": {
+    "message": "Filter incoming Thunderbird messages using JavaScript regular expressions. Match on subject, sender, recipients, or body; then move, tag, archive, flag, mark read, or delete.",
+    "description": "Long description shown on the Add-ons Manager and AMO listing."
+  }
+}
